@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset=UTF-8">
+	<title>Formulário de Cadastro</title>
+</head>
+<h1>Formulário de Cadastro de CLIENTE</h1>
+<script>
+	function SomenteLetra(e){
+		var tecla=(window.event)?event.keyCode:e.which;   
+		if((tecla>47 && tecla<58)) return false;
+		else{
+			if (tecla==8 || tecla==0) return false;
+			else  return true;
+		}
+	}
+	function SomenteNumero(e){
+		var tecla=(window.event)?event.keyCode:e.which;   
+		if((tecla>47 && tecla<58)) return true;
+		else{
+			if (tecla==8 || tecla==0) return true;
+			else  return false;
+		}
+	}
+	function formatar(mascara, documento){
+		var i = documento.value.length;
+		var saida = mascara.substring(0,1);
+		var texto = mascara.substring(i)
+		if (texto.substring(0,1) != saida){
+			documento.value += texto.substring(0,1);
+		}
+	}
+	function Limpar(){
+		for(i=0;i<form.length;i++){
+			form.elements[i].value='';
+		}
+	}
+</script>
+<form>
+	<fieldset>
+		<legend>Empresa</legend>
+		<table>
+		<tbody>
+		<tr>
+			<td>
+				<label>Código:</label>
+			</td>
+			<td>
+				<input maxlength="3" size="1" OnKeyPress="return SomenteNumero(event)"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>CNPJ:</label>
+			</td>
+			<td>
+				<input maxlength="18" size="14" OnKeyPress="return SomenteNumero(event)" OnKeyDown="formatar('##.###.###/####-##', this)"/>
+			</td>
+			<td>
+				<label>CPF:</label>
+			</td>
+			<td>
+				<input maxlength="14" size="10" OnKeyPress="return SomenteNumero(event)" OnKeyDown="formatar('###.###.###-##', this)"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Razão Social:</label>
+			</td>
+			<td>
+				<input size="40"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Nome Fantasia:</label>
+			</td>
+			<td>
+				<input size="40"/>
+			</td>
+			<td>
+				<label>Status:</label>
+			</td>
+			<td>
+				<select>
+					<option disabled selected></option>
+					<option>Ativo</option>
+					<option>Inativo</option>
+				</select>
+			</td>
+			<td>
+				<label>Optante Simples Nacional</label>
+			</td>
+			<td>
+				<input type="radio"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>IE:</label>
+			</td>
+			<td>
+				<input maxlength="11" size="7" OnKeyPress="return SomenteNumero(event)" OnKeyDown="formatar('##.######-#', this)"/>
+			</td>
+		</tr>
+		</tbody>
+		</table>
+	</fieldset>
+	<fieldset>
+		<legend>Logradouro</legend>
+		<table>
+		<tbody>
+		<tr>
+			<td>
+				<label>CEP:</label>
+			</td>
+			<td>
+				<input maxlength="10" size="6" OnKeyPress="return SomenteNumero(event)" OnKeyDown="formatar('##.###-###', this)"/>
+			</td>
+			<td>
+				<label>Código do Município:</label>
+			</td>
+			<td>
+				<input maxlength="7" size="4" OnKeyPress="return SomenteNumero(event)"/>
+			</td>
+			<td>
+				<label>Código do País:</label>
+			</td>
+			<td>
+				<input maxlength="5" size="2" OnKeyPress="return SomenteNumero(event)"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Endereço:</label>
+			</td>
+			<td>
+				<input size="40"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Complemento:</label>
+			</td>
+			<td>
+				<input size="30"/>
+			</td>
+			<td>
+				<label>Número:</label>
+			</td>
+			<td>
+				<input size="2"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Bairro:</label>
+			</td>
+			<td>
+				<input size="20"/>
+			</td>
+			<td>
+				<label>Cidade:</label>
+			</td>
+			<td>
+				<input size="12"/>
+			</td>
+			<td>
+				<label>UF:</label>
+			</td>
+			<td>
+				<input maxlength="2" size="1" type="text" style="text-transform:uppercase" OnKeyPress="return SomenteLetra(event)"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Telefone:</label>
+			</td>
+			<td>
+				<input maxlength="12" size="8" OnKeyPress="return SomenteNumero(event)" OnKeyDown="formatar('## ####-####', this)"/>
+			</td>
+			<td>
+				<label>Celular:</label>
+			</td>
+			<td>
+				<input maxlength="13" size="9" OnKeyPress="return SomenteNumero(event)" OnKeyDown="formatar('## #####-####', this)"/>
+			</td>
+		</tr>
+		</tbody>
+		</table>
+	</fieldset>
+</form>
+<p>
+	<input type="submit"/>
+	<input type="button" value="Limpar" onclick="Limpar()"/>
+</p>
+</html>
